@@ -1,7 +1,18 @@
 import styled from "styled-components";
+import Main from "../components/Main";
 
 export default function MainPage() {
-  return <Mainontainer>main페이지입니다</Mainontainer>;
+  return (
+    <Maincontainer>
+      <Main />
+    </Maincontainer>
+  );
 }
 
-export const Mainontainer = styled.div``;
+const Maincontainer = styled.div`
+  display: flex;
+  width: 70%;
+  margin: auto;
+  padding: 30px;
+  justify-content: center;
+`;
