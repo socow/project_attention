@@ -9,7 +9,7 @@ export default function Nav() {
           <LogoImg />
         </LogoWrap>
         <BtnWrap>
-          <PostBtn>글 작성하기</PostBtn>
+          <PostBtn>새 글 작성</PostBtn>
           <LoginBtn>로그인</LoginBtn>
         </BtnWrap>
       </Navbar>

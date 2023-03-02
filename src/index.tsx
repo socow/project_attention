@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import firebase from "./firebase";
 import { RecoilRoot } from "recoil";
+import { firestore } from "./firebase";
 
-console.log(firebase);
-
+console.log(firestore);
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
