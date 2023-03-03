@@ -26,9 +26,9 @@ export default function Main() {
   return (
     <>
       <MainWappar>
-        <h1>오늘의 고민과 이야기에 주목합니다. </h1>
+        <h1>당신의 고민과 이야기에 주목합니다. </h1>
         <h2>
-          오늘의 주목:<span> "{data?.story}"</span>{" "}
+          오늘의 주목:<span> "{data?.story}"</span>
         </h2>
       </MainWappar>
     </>

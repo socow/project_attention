@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logo from "../assets/logo.png";
-
+import GoogleLoginBtn from "./GoogleButton";
 export default function Nav() {
   return (
     <>
@@ -11,6 +11,7 @@ export default function Nav() {
         <BtnWrap>
           <PostBtn>새 글 작성</PostBtn>
           <LoginBtn>로그인</LoginBtn>
+          <GoogleLoginBtn />
         </BtnWrap>
       </Navbar>
     </>
