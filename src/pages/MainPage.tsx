@@ -3,15 +3,16 @@ import Main from "../components/Main";
 
 export default function MainPage() {
   return (
-    <Maincontainer>
+    <Container>
       <Main />
-    </Maincontainer>
+    </Container>
   );
 }
 
-const Maincontainer = styled.div`
+export const Container = styled.div`
   display: flex;
-  width: 70%;
+  width: 1000px;
+  height: 500px;
   margin: auto;
   padding: 30px;
   justify-content: center;

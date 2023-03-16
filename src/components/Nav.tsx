@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import GoogleLoginBtn from "./GoogleButton";
+
 export default function Nav() {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar>
@@ -9,9 +12,9 @@ export default function Nav() {
           <LogoImg />
         </LogoWrap>
         <BtnWrap>
-          <PostBtn>새 글 작성</PostBtn>
-          <LoginBtn>로그인</LoginBtn>
-          <GoogleLoginBtn />
+          <PostBtn onClick={() => navigate("/post")}>새 글 작성</PostBtn>
+          {/* <LoginBtn>로그인</LoginBtn> */}
+          {/* <GoogleLoginBtn /> */}
         </BtnWrap>
       </Navbar>
     </>
@@ -26,12 +29,13 @@ const Navbar = styled.nav`
   align-items: center;
   height: 85px;
   padding: 0 10px;
+  border-bottom: 1px #ccc dotted;
 `;
 const LogoWrap = styled.a``;
 const LogoImg = styled.img.attrs({
   src: `${logo}`,
 })`
-  height: 100px;
+  height: 90px;
 `;
 const BtnWrap = styled.div`
   display: flex;

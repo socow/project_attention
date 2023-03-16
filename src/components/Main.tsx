@@ -1,41 +1,30 @@
 import { useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { getRequset } from "../apis/api";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { attentionState } from "src/store/attention.recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { attentionState, todaySelector } from "src/store/attention.recoil";
 
 export default function Main() {
-  const [data] = useRecoilState(attentionState);
   const setData = useSetRecoilState(attentionState);
-
+  const today = useRecoilValue(todaySelector);
   const getData = useCallback(() => getRequset(setData), [setData]);
 
   useEffect(() => {
     getData();
   }, [getData]);
 
-  // const updata = () => {
-  //   const date = new Date().toLocaleDateString("ko-kr");
-  //   firestore.collection("reservation").add({
-  //     name: "취업",
-  //     story: "취업하고 싶어요",
-  //     date: date,
-  //   });
-  // };
-
   return (
     <>
-      <MainWappar>
-        <h1>당신의 고민과 이야기에 주목합니다. </h1>
-        <h2>
-          오늘의 주목:<span> "{data?.story}"</span>
-        </h2>
-      </MainWappar>
+      <Wappar>
+        <h1>당신에게 주목 합니다. </h1>
+        <h2>오늘의 주목</h2>
+        <span> "{today?.story}"</span>
+      </Wappar>
     </>
   );
 }
 
-const MainWappar = styled.div`
+export const Wappar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,8 +33,7 @@ const MainWappar = styled.div`
   margin-top: 50px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: -9px 17px 13px rgb(0 0 0/16%);
+  box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
   span {
-    color: #02d73b;
   }
 `;
