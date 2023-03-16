@@ -10,21 +10,24 @@ import { useRecoilValue } from "recoil";
 
 export default function Calendar() {
   const navigate = useNavigate();
-  const [isDate, setIsDate] = useState<Date>(new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date());
   const [isDateSelected, setIsDateSelected] = useState<boolean>(false);
   const [isCheck, setIsCheck] = useState<boolean>(false);
   const [story, setStory] = useState<string>("");
-  const checks = useRecoilValue(checkSelector);
+  const check = useRecoilValue(checkSelector);
 
   const post = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await postRequset(story, isDate);
+    await postRequset(story, startDate);
     navigate("/");
   };
 
-  const reservationCheck = () => {
-    const date = isDate.toLocaleDateString("ko-kr");
-    let res = checks.filter((check: any) => check.date.includes(date));
+  const reservationCheck = (date: Date) => {
+    setStartDate(date);
+    setIsDateSelected(true);
+    let newDate = date.toLocaleDateString("ko-kr");
+    console.log(newDate);
+    let res = check.filter((check: any) => check.date.includes(newDate));
     if (res.length === 1) {
       setIsCheck(false);
     } else {
@@ -36,11 +39,9 @@ export default function Calendar() {
     <>
       <CalendarSection>
         <DatePicker
-          selected={isDate}
+          selected={startDate}
           onChange={(date: Date) => {
-            setIsDate(date);
-            setIsDateSelected(true);
-            reservationCheck();
+            reservationCheck(date);
           }}
           inline
           locale={ko}
