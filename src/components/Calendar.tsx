@@ -3,24 +3,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { useCallback, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
-import { attentionRequest } from "src/apis/api";
-import { checkSelector } from "src/store/attention.recoil";
+import { allDataSelector } from "src/store/attention.recoil";
 import { useRecoilValue } from "recoil";
-
+import PostFrom from "./PostForm";
 export default function Calendar() {
-  const navigate = useNavigate();
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [isDateSelected, setIsDateSelected] = useState<boolean>(false);
   const [isCheck, setIsCheck] = useState<boolean>(false);
-  const [story, setStory] = useState<string>("");
-  const check = useRecoilValue(checkSelector);
-
-  const post = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await attentionRequest.post(story, startDate);
-    navigate("/");
-  };
+  const check = useRecoilValue(allDataSelector);
 
   const openResevation = useCallback(() => {
     setIsCheck(false);
@@ -56,21 +46,22 @@ export default function Calendar() {
         />
       </CalendarSection>
       {isDateSelected && (
-        <div>
+        <PostWappar>
           {isCheck ? (
-            <form onSubmit={post}>
-              제목
-              <input onChange={(e) => setStory(e.target.value)} />
-              <button type="submit">글 작성하기</button>
-            </form>
+            <PostFrom startDate={startDate} />
           ) : (
-            <p>예약이 마감되었습니다</p>
+            <h1>해당 날짜는 예약이 마감되었습니다.</h1>
           )}
-        </div>
+        </PostWappar>
       )}
     </>
   );
 }
+const PostWappar = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
 
 const CalendarSection = styled.section`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

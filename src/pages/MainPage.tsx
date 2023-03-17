@@ -12,7 +12,7 @@ export default function MainPage() {
 export const Container = styled.div`
   display: flex;
   width: 1000px;
-  height: 500px;
+  height: 100%;
   margin: auto;
   padding: 30px;
   justify-content: center;

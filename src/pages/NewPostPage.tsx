@@ -14,6 +14,7 @@ const PostWappar = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
+  align-items: center;
   width: 100%;
   padding: 20px;
   margin-top: 50px;
