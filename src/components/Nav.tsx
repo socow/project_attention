@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
-import GoogleLoginBtn from "./GoogleButton";
 
 export default function Nav() {
   const navigate = useNavigate();
@@ -13,8 +12,6 @@ export default function Nav() {
         </LogoWrap>
         <BtnWrap>
           <PostBtn onClick={() => navigate("/post")}>새 글 작성</PostBtn>
-          {/* <LoginBtn>로그인</LoginBtn> */}
-          {/* <GoogleLoginBtn /> */}
         </BtnWrap>
       </Navbar>
     </>
@@ -43,14 +40,7 @@ const BtnWrap = styled.div`
   gap: 30px;
   align-items: center;
 `;
-const LoginBtn = styled.button`
-  font-size: 20px;
-  font-weight: 500;
-  outline: none;
-  border: none;
-  background-color: #fff;
-  cursor: pointer;
-`;
+
 const PostBtn = styled.button`
   font-size: 20px;
   font-weight: 500;
