@@ -13,11 +13,7 @@ export const todaySelector = selector({
     const todayData = data.filter(
       (info: any) => info.date === new Date().toLocaleDateString("ko-kr")
     );
-    // if (todayData.length < 1) {
-    //   return todayData[]
-    // } else {
     return todayData[0];
-    // }
   },
 });
 
