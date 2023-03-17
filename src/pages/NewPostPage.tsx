@@ -20,6 +20,4 @@ const PostWappar = styled.div`
   background: #fff;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
-  span {
-  }
 `;

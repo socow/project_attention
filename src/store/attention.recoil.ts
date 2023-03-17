@@ -1,8 +1,9 @@
 import { atom, selector } from "recoil";
+import { Type } from "src/model/attention";
 
-export const attentionState = atom({
+export const attentionState = atom<Type[]>({
   key: "attentionState",
-  default: [] as any,
+  default: [],
 });
 
 export const todaySelector = selector({

@@ -1,14 +1,24 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
-import { getRequset } from "../apis/api";
+import { attentionRequest } from "../apis/api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { attentionState, todaySelector } from "src/store/attention.recoil";
+import {
+  attentionState,
+  checkSelector,
+  todaySelector,
+} from "src/store/attention.recoil";
+import { Type } from "src/model/attention";
 
 export default function Main() {
-  const setData = useSetRecoilState(attentionState);
+  const setData = useSetRecoilState<Type[]>(attentionState);
   const today = useRecoilValue(todaySelector);
-  const getData = useCallback(() => getRequset(setData), [setData]);
+  const check = useRecoilValue(checkSelector);
 
+  const getData = useCallback(() => attentionRequest.get(setData), [setData]);
+
+  const todayDate = useMemo(() => today, [today]);
+
+  const allStory = useMemo(() => check, [check]);
   useEffect(() => {
     getData();
   }, [getData]);
@@ -16,9 +26,10 @@ export default function Main() {
   return (
     <>
       <Wappar>
+        <h2>총 누적 주목:{allStory.length}</h2>
         <h1>당신에게 주목 합니다. </h1>
         <h2>오늘의 주목</h2>
-        <span> "{today?.story}"</span>
+        <span> "{todayDate?.story}"</span>
       </Wappar>
     </>
   );

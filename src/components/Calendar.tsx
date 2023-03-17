@@ -1,10 +1,10 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { postRequset } from "src/apis/api";
+import { attentionRequest } from "src/apis/api";
 import { checkSelector } from "src/store/attention.recoil";
 import { useRecoilValue } from "recoil";
 
@@ -18,20 +18,27 @@ export default function Calendar() {
 
   const post = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await postRequset(story, startDate);
+    await attentionRequest.post(story, startDate);
     navigate("/");
   };
+
+  const openResevation = useCallback(() => {
+    setIsCheck(false);
+  }, [setIsCheck]);
+
+  const closeResevation = useCallback(() => {
+    setIsCheck(true);
+  }, [setIsCheck]);
 
   const reservationCheck = (date: Date) => {
     setStartDate(date);
     setIsDateSelected(true);
     let newDate = date.toLocaleDateString("ko-kr");
-    console.log(newDate);
     let res = check.filter((check: any) => check.date.includes(newDate));
     if (res.length === 1) {
-      setIsCheck(false);
+      openResevation();
     } else {
-      setIsCheck(true);
+      closeResevation();
     }
   };
 
