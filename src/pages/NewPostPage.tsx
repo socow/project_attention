@@ -4,13 +4,13 @@ import styled from "styled-components";
 export default function NewPostPage() {
   return (
     <Container>
-      <PostWappar>
+      <PostWrappar>
         <Calendar />
-      </PostWappar>
+      </PostWrappar>
     </Container>
   );
 }
-const PostWappar = styled.div`
+const PostWrappar = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;

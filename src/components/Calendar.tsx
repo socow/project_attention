@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { allDataSelector } from "src/store/attention.recoil";
 import { useRecoilValue } from "recoil";
-import PostFrom from "./PostForm";
+import ReservationFrom from "./ReservationForm";
 export default function Calendar() {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [isDateSelected, setIsDateSelected] = useState<boolean>(false);
@@ -46,18 +46,18 @@ export default function Calendar() {
         />
       </CalendarSection>
       {isDateSelected && (
-        <PostWappar>
+        <PostWrappar>
           {isCheck ? (
-            <PostFrom startDate={startDate} />
+            <ReservationFrom startDate={startDate} />
           ) : (
             <h1>해당 날짜는 예약이 마감되었습니다.</h1>
           )}
-        </PostWappar>
+        </PostWrappar>
       )}
     </>
   );
 }
-const PostWappar = styled.div`
+const PostWrappar = styled.div`
   display: flex;
   align-items: center;
   height: 100%;

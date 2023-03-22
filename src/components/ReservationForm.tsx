@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
-import { attentionRequest } from "src/apis/api";
+import { Reservation } from "src/apis/Reservation";
 import styled from "styled-components";
+
 type Props = {
   startDate: Date;
 };
-export default function PostFrom({ startDate }: Props) {
+
+export default function ReservationFrom({ startDate }: Props) {
   const navigate = useNavigate();
   const SelectedDate = startDate.toLocaleDateString("ko-kr");
   const [story, setStory] = useState<string>("");
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setStory(e.target.value);
-  };
+  }, []);
 
   const post = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await attentionRequest.post(story, startDate);
+    await Reservation.post(story, startDate);
     navigate("/");
   };
 

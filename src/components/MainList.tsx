@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
-import { attentionRequest } from "../apis/api";
+import { Reservation } from "../apis/Reservation";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   attentionState,
@@ -8,13 +8,15 @@ import {
   todaySelector,
 } from "src/store/attention.recoil";
 import { Type } from "src/model/attention";
+import CommentList from "./CommentList";
+import Comments from "./Comments";
 
-export default function Main() {
+export default function MainList() {
   const setData = useSetRecoilState<Type[]>(attentionState);
   const today = useRecoilValue(todaySelector);
   const check = useRecoilValue(allDataSelector);
 
-  const getData = useCallback(() => attentionRequest.get(setData), [setData]);
+  const getData = useCallback(() => Reservation.ListGet(setData), [setData]);
 
   const todayDate = useMemo(() => today, [today]);
 
@@ -26,7 +28,7 @@ export default function Main() {
 
   return (
     <>
-      <Wappar>
+      <Wrappar>
         <h2>
           총 누적 주목:<span>{allStory.length}</span>
         </h2>
@@ -36,12 +38,14 @@ export default function Main() {
         ) : (
           <span>오늘은 이야기가 없습니다</span>
         )}
-      </Wappar>
+        <Comments />
+        <CommentList />
+      </Wrappar>
     </>
   );
 }
 
-export const Wappar = styled.div`
+export const Wrappar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,6 +58,7 @@ export const Wappar = styled.div`
   box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
   p {
     line-height: 40px;
+    font-size: 30px;
   }
   h2 {
     span {

@@ -3,8 +3,8 @@ import { Type } from "src/model/attention";
 
 const db = firestore.collection("reservation");
 
-export const attentionRequest = {
-  async get(setData: React.Dispatch<React.SetStateAction<Type[]>>) {
+export const Reservation = {
+  async ListGet(setData: React.Dispatch<React.SetStateAction<Type[]>>) {
     try {
       let allDate = [] as Type[];
       await db.get().then((docs) => {
@@ -20,7 +20,7 @@ export const attentionRequest = {
   async post(story: string, isDate: Date) {
     try {
       const date = isDate.toLocaleDateString("ko-kr");
-      db.add({
+      await db.add({
         story: story,
         date: date,
       });

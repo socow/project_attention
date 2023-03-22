@@ -1,8 +1,13 @@
 import { atom, selector } from "recoil";
-import { Type } from "src/model/attention";
+import { CommentType, Type } from "src/model/attention";
 
 export const attentionState = atom<Type[]>({
   key: "attentionState",
+  default: [],
+});
+
+export const listState = atom<CommentType[]>({
+  key: "listState",
   default: [],
 });
 
@@ -14,6 +19,14 @@ export const todaySelector = selector({
       (info: any) => info.date === new Date().toLocaleDateString("ko-kr")
     );
     return todayData[0];
+  },
+});
+
+export const ListSelector = selector({
+  key: "ListSelector",
+  get: ({ get }) => {
+    const data = get(listState);
+    return data;
   },
 });
 
