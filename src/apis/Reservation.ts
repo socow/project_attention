@@ -34,6 +34,7 @@ export const Reservation = {
         story,
         date,
       });
+      alert("예약이 완료되었습니다");
     } catch (error) {
       console.error(error);
     }
