@@ -109,10 +109,6 @@ export const Reservation = {
 
 오늘의 날짜랑 같은 데이터를 필터하고 데이터 길이가 1개보다 크거나 같으면 마감되었다고 표시해줍니다.
 
-이슈: 새로고침하였을때 저장되있던 데이터가 사라져 예약이 차있음에도 예약을 하는 버그를 발견 하였습니다.
-
-그래서 상태관리 유지를 하기위해 Recoil-persist 적용하여 해결하였습니다.
-
 ```ts
 const reservationCheck = (date: Date) => {
   setStartDate(date);
@@ -188,4 +184,20 @@ export default function useInput() {
 
   return { value, onChange };
 }
+```
+
+이슈: 새로고침하였을때 저장되있던 데이터가 사라져 예약이 차있음에도 예약을 하는 버그를 발견 하였습니다.
+
+그래서 상태관리 유지를 하기위해 Recoil-persist 적용하여 해결하였습니다.
+
+```ts
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
+
+export const attentionAllState = atom<Type[]>({
+  key: "attentionAllState",
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
 ```
