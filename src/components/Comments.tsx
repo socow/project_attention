@@ -1,17 +1,13 @@
-import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { comment } from "src/apis/Comment";
+import useInput from "src/hooks/useInput";
 
 export default function Comments() {
-  const [content, setContent] = useState("");
-
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  }, []);
+  const { value, onChange } = useInput();
 
   const post = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await comment.post(content);
+    await comment.post(value);
     alert("댓글 등록이 완료되었습니다");
     window.location.reload();
   };

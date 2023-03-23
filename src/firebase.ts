@@ -2,7 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCj2yWVuPULhmQrGo7u-FxgSMK6TKimbRk",
+  apiKey: process.env.REACT_APP_CLIENT_ID,
   authDomain: "attention-8a4cb.firebaseapp.com",
   projectId: "attention-8a4cb",
   storageBucket: "attention-8a4cb.appspot.com",

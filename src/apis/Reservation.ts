@@ -11,9 +11,12 @@ export const Reservation = {
     try {
       let todayDate = [] as Type[];
       let allDate = [] as Type[];
+
       const allList = await db.get();
+
       allList.docs.map((doc) => (allDate = [...allDate, { ...doc.data() }]));
       setAllData(allDate);
+
       const list = await db
         .where("date", "==", new Date().toLocaleDateString("ko-kr"))
         .get();
@@ -28,8 +31,8 @@ export const Reservation = {
     try {
       const date = isDate.toLocaleDateString("ko-kr");
       await db.add({
-        story: story,
-        date: date,
+        story,
+        date,
       });
     } catch (error) {
       console.error(error);

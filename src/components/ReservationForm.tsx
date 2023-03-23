@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import { Reservation } from "src/apis/Reservation";
+import useInput from "src/hooks/useInput";
 import styled from "styled-components";
 
 type Props = {
@@ -8,17 +8,13 @@ type Props = {
 };
 
 export default function ReservationFrom({ startDate }: Props) {
+  const { value, onChange } = useInput();
   const navigate = useNavigate();
   const SelectedDate = startDate.toLocaleDateString("ko-kr");
-  const [story, setStory] = useState<string>("");
-
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setStory(e.target.value);
-  }, []);
 
   const post = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await Reservation.post(story, startDate);
+    await Reservation.post(value, startDate);
     navigate("/");
   };
 

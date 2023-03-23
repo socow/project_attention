@@ -6,29 +6,30 @@ import styled from "styled-components";
 import { allDataSelector } from "src/store/attention.recoil";
 import { useRecoilValue } from "recoil";
 import ReservationFrom from "./ReservationForm";
+
 export default function Calendar() {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [isDateSelected, setIsDateSelected] = useState<boolean>(false);
-  const [isCheck, setIsCheck] = useState<boolean>(false);
+  const [isCheck, setIsCheck] = useState<boolean>(true);
   const check = useRecoilValue(allDataSelector);
 
   const openResevation = useCallback(() => {
-    setIsCheck(false);
+    setIsCheck(true);
   }, [setIsCheck]);
 
   const closeResevation = useCallback(() => {
-    setIsCheck(true);
+    setIsCheck(false);
   }, [setIsCheck]);
 
   const reservationCheck = (date: Date) => {
     setStartDate(date);
     setIsDateSelected(true);
-    let newDate = date.toLocaleDateString("ko-kr");
-    let res = check.filter((check: any) => check.date.includes(newDate));
-    if (res.length === 1) {
-      openResevation();
-    } else {
+    const newDate = date.toLocaleDateString("ko-kr");
+    const res = check.filter((check: any) => check.date.includes(newDate));
+    if (res.length >= 1) {
       closeResevation();
+    } else {
+      openResevation();
     }
   };
 

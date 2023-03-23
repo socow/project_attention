@@ -1,19 +1,8 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CommentType } from "src/model/attention";
-import { listState } from "src/store/attention.recoil";
 import styled from "styled-components";
-import { comment } from "src/apis/Comment";
-import { useCallback, useEffect } from "react";
+import useCommentFetch from "src/hooks/useCommentFetch";
 
 export default function CommentList() {
-  const setList = useSetRecoilState<CommentType[]>(listState);
-  const list = useRecoilValue(listState);
-
-  const getList = useCallback(() => comment.get(setList), [setList]);
-
-  useEffect(() => {
-    getList();
-  }, [getList]);
+  const { list } = useCommentFetch();
 
   return (
     <ListWrappar>

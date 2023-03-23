@@ -1,10 +1,16 @@
+import CommentList from "src/components/CommentList";
+import Comments from "src/components/Comments";
 import styled from "styled-components";
 import MainList from "../components/MainList";
 
 export default function MainPage() {
   return (
     <Container>
-      <MainList />
+      <MainWrappar>
+        <MainList />
+        <Comments />
+        <CommentList />
+      </MainWrappar>
     </Container>
   );
 }
@@ -13,8 +19,21 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   width: 1000px;
   height: 100%;
   margin: auto;
   padding: 30px;
+`;
+const MainWrappar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  margin-top: 50px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
 `;

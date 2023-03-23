@@ -1,8 +1,17 @@
 import { firestore } from "src/firebase";
-import { randomId } from "src/hooks/randomId";
 import { CommentType } from "src/model/attention";
+
 const db = firestore.collection("comments");
 
+const randomId = (length = 8) => {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let str = "";
+  for (let i = 0; i < length; i++) {
+    str += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return str;
+};
 export const comment = {
   async post(content: string) {
     try {

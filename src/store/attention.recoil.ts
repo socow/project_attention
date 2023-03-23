@@ -5,22 +5,7 @@ export const attentionState = atom<Type[]>({
   key: "attentionState",
   default: [],
 });
-export const attentionAllState = atom<Type[]>({
-  key: "attentionAllState",
-  default: [],
-});
-export const listState = atom<CommentType[]>({
-  key: "listState",
-  default: [],
-});
-export const allDataSelector = selector({
-  key: "DataSelector",
-  get: ({ get }) => {
-    const data = get(attentionAllState);
 
-    return data;
-  },
-});
 export const todaySelector = selector({
   key: "todaySelector",
   get: ({ get }) => {
@@ -28,6 +13,24 @@ export const todaySelector = selector({
 
     return data[0];
   },
+});
+
+export const attentionAllState = atom<Type[]>({
+  key: "attentionAllState",
+  default: [],
+});
+
+export const allDataSelector = selector({
+  key: "DataSelector",
+  get: ({ get }) => {
+    const check = get(attentionAllState);
+    return check;
+  },
+});
+
+export const listState = atom<CommentType[]>({
+  key: "listState",
+  default: [],
 });
 
 export const ListSelector = selector({
