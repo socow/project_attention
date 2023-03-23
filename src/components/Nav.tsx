@@ -26,7 +26,7 @@ const Navbar = styled.nav`
   align-items: center;
   height: 85px;
   padding: 0 10px;
-  border-bottom: 1px #ccc dotted;
+  border-bottom: 1px #ffcccc dotted;
 `;
 const LogoWrap = styled.a``;
 const LogoImg = styled.img.attrs({

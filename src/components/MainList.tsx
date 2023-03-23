@@ -30,11 +30,12 @@ export default function MainList() {
     <>
       <Wrappar>
         <h2>
-          총 누적 주목:<span>{allStory.length}</span>
+          총 누적 주목: <span>{allStory.length}</span>
         </h2>
-        <h1>당신의 이야기에 주목합니다. </h1>
+        <h1>오직 당신의 이야기에 주목합니다. </h1>
+
         {todayDate ? (
-          <p> "{todayDate?.story}"</p>
+          <Story> "{todayDate?.story}"</Story>
         ) : (
           <span>오늘은 이야기가 없습니다</span>
         )}
@@ -56,16 +57,30 @@ export const Wrappar = styled.div`
   background: #fff;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
-  p {
-    line-height: 40px;
-    font-size: 30px;
+  h1 {
+    padding-bottom: 5px;
+    border-bottom: 3px solid #ffcccc;
   }
   h2 {
+    display: flex;
+
+    align-items: center;
     span {
+      border-radius: 45%;
+      border: 2px solid #ffcccc;
       color: rgb(225, 68, 79);
+      padding: 11px;
     }
   }
   span {
     font-size: 30px;
   }
+`;
+const Story = styled.p`
+  width: 800px;
+  line-height: 40px;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffcccc;
 `;

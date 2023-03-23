@@ -29,8 +29,8 @@ const CommentWrappar = styled.form`
   display: flex;
 
   textarea {
-    height: 43px;
-    width: 612px;
+    width: 599px;
+    height: 41px;
   }
 `;
 const CommentButton = styled.button`

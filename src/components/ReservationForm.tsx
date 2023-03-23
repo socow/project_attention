@@ -27,7 +27,7 @@ export default function ReservationFrom({ startDate }: Props) {
       <PostStory onSubmit={post}>
         <h1>당신의 이야기를 예약해주세요</h1>
         <h2>
-          선택한 날짜: "<span>{SelectedDate}</span>"
+          선택한 날짜: <span>{SelectedDate}</span>
         </h2>
 
         <textarea
@@ -45,13 +45,16 @@ const PostStory = styled.form`
   }
   h2 {
     span {
+      padding: 5px;
       color: rgb(225, 68, 79);
+      border: 2px solid #ffcccc;
+      border-radius: 5px;
     }
   }
   textarea {
     height: 200px;
     width: 345px;
-    border: 3px solid #f2f2f2;
+    border: 3px solid #ffcccc;
     font-size: 22px;
     padding: 5px;
     margin: 4px 9px;
