@@ -21,7 +21,10 @@ export default function CommentList() {
         <div key={list.id}>
           <h3>
             {list.id}
-            <span>({list.date})</span>
+            <span>
+              ({list.date}
+              {list?.time})
+            </span>
           </h3>
 
           <p>{list.content}</p>

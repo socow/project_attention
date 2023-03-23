@@ -21,6 +21,7 @@ export const comment = {
       let commentDate = [] as CommentType[];
       const comments = await db
         .where("date", "==", new Date().toLocaleDateString("ko-kr"))
+        .orderBy("time", "desc")
         .get();
       comments.docs.map(
         (doc) => (commentDate = [...commentDate, { ...doc.data() }])

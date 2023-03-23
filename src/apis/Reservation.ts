@@ -10,9 +10,7 @@ export const Reservation = {
       const list = await db
         .where("date", "==", new Date().toLocaleDateString("ko-kr"))
         .get();
-      console.log(
-        list.docs.map((doc) => (allDate = [...allDate, { ...doc.data() }]))
-      );
+      list.docs.map((doc) => (allDate = [...allDate, { ...doc.data() }]));
       setData(allDate);
     } catch (error) {
       console.error(error);
