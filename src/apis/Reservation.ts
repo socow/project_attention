@@ -4,15 +4,16 @@ import { Type } from "src/model/attention";
 const db = firestore.collection("reservation");
 
 export const Reservation = {
-  async ListGet(setData: React.Dispatch<React.SetStateAction<Type[]>>) {
+  async get(setData: React.Dispatch<React.SetStateAction<Type[]>>) {
     try {
       let allDate = [] as Type[];
-      await db.get().then((docs) => {
-        docs.forEach((doc) => {
-          allDate = [...allDate, { ...doc.data() }];
-          setData(allDate);
-        });
-      });
+      const list = await db
+        .where("date", "==", new Date().toLocaleDateString("ko-kr"))
+        .get();
+      console.log(
+        list.docs.map((doc) => (allDate = [...allDate, { ...doc.data() }]))
+      );
+      setData(allDate);
     } catch (error) {
       console.error(error);
     }

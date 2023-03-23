@@ -15,10 +15,8 @@ export const todaySelector = selector({
   key: "todaySelector",
   get: ({ get }) => {
     const data = get(attentionState);
-    const todayData = data.filter(
-      (info: any) => info.date === new Date().toLocaleDateString("ko-kr")
-    );
-    return todayData[0];
+
+    return data[0];
   },
 });
 

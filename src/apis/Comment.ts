@@ -18,13 +18,14 @@ export const comment = {
   },
   async get(setList: React.Dispatch<React.SetStateAction<CommentType[]>>) {
     try {
-      let allDate = [] as CommentType[];
-      db.get().then((docs) => {
-        docs.forEach((doc) => {
-          allDate = [...allDate, { ...doc.data() }];
-          setList(allDate);
-        });
-      });
+      let commentDate = [] as CommentType[];
+      const comments = await db
+        .where("date", "==", new Date().toLocaleDateString("ko-kr"))
+        .get();
+      comments.docs.map(
+        (doc) => (commentDate = [...commentDate, { ...doc.data() }])
+      );
+      setList(commentDate);
     } catch (error) {
       console.error(error);
     }

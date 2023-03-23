@@ -16,7 +16,7 @@ export default function MainList() {
   const today = useRecoilValue(todaySelector);
   const check = useRecoilValue(allDataSelector);
 
-  const getData = useCallback(() => Reservation.ListGet(setData), [setData]);
+  const getData = useCallback(() => Reservation.get(setData), [setData]);
 
   const todayDate = useMemo(() => today, [today]);
 
