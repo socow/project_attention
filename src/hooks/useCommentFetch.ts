@@ -13,6 +13,7 @@ export default function useCommentFetch() {
   useEffect(() => {
     getList();
   }, [getList]);
+
   return {
     list,
   };

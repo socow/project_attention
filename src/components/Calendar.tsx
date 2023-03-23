@@ -24,8 +24,9 @@ export default function Calendar() {
   const reservationCheck = (date: Date) => {
     setStartDate(date);
     setIsDateSelected(true);
-    const newDate = date.toLocaleDateString("ko-kr");
-    const res = check.filter((check: any) => check.date.includes(newDate));
+    const res = check.filter((check: any) =>
+      check.date.includes(date.toLocaleDateString("ko-kr"))
+    );
     if (res.length >= 1) {
       closeResevation();
     } else {
