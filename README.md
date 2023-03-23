@@ -2,6 +2,8 @@
 
 DEMO : [DEMO](https://ephemeral-raindrop-5be87b.netlify.app/)
 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/105201721/227206674-1431710e-d1c6-4bf0-9f02-6b83fc43dc72.gif)
+
 # 프로젝트 설치 및 실행 방법
 
 ```
