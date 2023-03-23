@@ -6,6 +6,7 @@ import {
   attentionState,
   allDataSelector,
   todaySelector,
+  attentionAllState,
 } from "src/store/attention.recoil";
 import { Type } from "src/model/attention";
 import CommentList from "./CommentList";
@@ -13,14 +14,18 @@ import Comments from "./Comments";
 
 export default function MainList() {
   const setData = useSetRecoilState<Type[]>(attentionState);
+  const setAllData = useSetRecoilState<Type[]>(attentionAllState);
   const today = useRecoilValue(todaySelector);
-  const check = useRecoilValue(allDataSelector);
+  const all = useRecoilValue(allDataSelector);
 
-  const getData = useCallback(() => Reservation.get(setData), [setData]);
+  const getData = useCallback(
+    () => Reservation.get(setData, setAllData),
+    [setData, setAllData]
+  );
 
   const todayDate = useMemo(() => today, [today]);
 
-  const allStory = useMemo(() => check, [check]);
+  const allStory = useMemo(() => all, [all]);
 
   useEffect(() => {
     getData();
@@ -77,6 +82,8 @@ export const Wrappar = styled.div`
   }
 `;
 const Story = styled.p`
+  display: flex;
+  justify-content: center;
   width: 800px;
   line-height: 40px;
   font-size: 20px;
