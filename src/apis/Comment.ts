@@ -12,6 +12,7 @@ const randomId = (length = 8) => {
   }
   return str;
 };
+
 export const comment = {
   async post(content: string) {
     try {
