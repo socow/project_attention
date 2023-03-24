@@ -16,8 +16,6 @@ export default function MainPage() {
 }
 
 const Container = styled.div`
-  @media ${({ theme }) => theme.device.mobile} {
-  }
   display: flex;
   justify-content: center;
   flex-direction: column;

@@ -4,6 +4,10 @@ DEMO : [DEMO](https://ephemeral-raindrop-5be87b.netlify.app/)
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/105201721/227206674-1431710e-d1c6-4bf0-9f02-6b83fc43dc72.gif)
 
+# Media quary를 사용하여 반응형 레이아웃으로 구현하였습니다.
+
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/105201721/227491049-cba370ab-25d7-4239-a0cd-aaae62de7fe8.gif)
+
 # 프로젝트 설치 및 실행 방법
 
 ```
