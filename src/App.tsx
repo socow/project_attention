@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import Nav from "./components/Nav";
 import NewPostPage from "./pages/NewPostPage";
+
 function App() {
   return (
     <BrowserRouter>

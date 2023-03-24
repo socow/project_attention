@@ -19,28 +19,37 @@ export default function ReservationFrom({ startDate }: Props) {
   };
 
   return (
-    <>
-      <PostStory onSubmit={post}>
-        <h1>당신의 이야기를 예약해주세요</h1>
-        <h2>
-          선택한 날짜: <span>{SelectedDate}</span>
-        </h2>
+    <PostStory onSubmit={post}>
+      <h1>당신의 이야기를 예약해주세요</h1>
+      <h2>
+        선택한 날짜: <span>{SelectedDate}</span>
+      </h2>
 
-        <textarea
-          placeholder="당신의 이야기를 적어주세요."
-          onChange={onChange}
-        />
-        <button type="submit">글 작성하기</button>
-      </PostStory>
-    </>
+      <textarea placeholder="당신의 이야기를 적어주세요." onChange={onChange} />
+      <button type="submit">글 작성하기</button>
+    </PostStory>
   );
 }
 const PostStory = styled.form`
+  @media ${({ theme }) => theme.device.mobile} {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  margin: 5px;
   h1 {
-    top: 30px;
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 18px;
+    }
   }
   h2 {
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 18px;
+    }
     span {
+      @media ${({ theme }) => theme.device.mobile} {
+        font-size: 18px;
+      }
       padding: 5px;
       color: rgb(225, 68, 79);
       border: 2px solid #ffcccc;
@@ -48,6 +57,9 @@ const PostStory = styled.form`
     }
   }
   textarea {
+    @media ${({ theme }) => theme.device.mobile} {
+      height: 100px;
+    }
     height: 200px;
     width: 345px;
     border: 3px solid #ffcccc;
@@ -56,6 +68,10 @@ const PostStory = styled.form`
     margin: 4px 9px;
   }
   button {
+    @media ${({ theme }) => theme.device.mobile} {
+      height: 40px;
+      width: 95%;
+    }
     display: flex;
     justify-content: center;
     align-items: center;

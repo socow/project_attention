@@ -15,17 +15,22 @@ export default function MainPage() {
   );
 }
 
-export const Container = styled.div`
+const Container = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+  }
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 1000px;
+  width: 75%;
   height: 100%;
   margin: auto;
   padding: 30px;
 `;
 const MainWrappar = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-top: 0px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;

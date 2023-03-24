@@ -15,7 +15,7 @@ export default function MainList() {
         {todayDate ? (
           <Story> "{todayDate?.story}"</Story>
         ) : (
-          <span>오늘은 이야기가 없습니다</span>
+          <Story>오늘은 이야기가 없습니다</Story>
         )}
       </Wrappar>
     </>
@@ -26,15 +26,27 @@ export const Wrappar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  h2 {
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 15px;
+    }
+  }
   h1 {
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 15px;
+    }
     padding-bottom: 5px;
     border-bottom: 3px solid #ffcccc;
   }
   h2 {
     display: flex;
-
     align-items: center;
     span {
+      @media ${({ theme }) => theme.device.mobile} {
+        font-size: 15px;
+        padding: 5px;
+      }
       border-radius: 45%;
       border: 2px solid #ffcccc;
       color: rgb(225, 68, 79);
@@ -46,9 +58,12 @@ export const Wrappar = styled.div`
   }
 `;
 const Story = styled.p`
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 10px;
+  }
   display: flex;
   justify-content: center;
-  width: 800px;
+  width: 80%;
   line-height: 40px;
   font-size: 20px;
   padding: 10px;

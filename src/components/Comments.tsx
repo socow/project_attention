@@ -25,11 +25,25 @@ const CommentWrappar = styled.form`
   display: flex;
 
   textarea {
-    width: 599px;
+    @media ${({ theme }) => theme.device.tabletL} {
+      width: 560px;
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+      width: 405px;
+    }
+    @media ${({ theme }) => theme.device.mobile} {
+      width: 178px;
+      height: 24px;
+    }
+    width: 810px;
     height: 41px;
   }
 `;
 const CommentButton = styled.button`
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 30px;
+    font-size: 10px;
+  }
   position: relative;
   background-color: #fff;
   border: 1px solid #ccc;

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { RecoilRoot } from "recoil";
 import { firestore } from "./firebase";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 
 console.log(firestore);
 
@@ -12,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </RecoilRoot>
   </React.StrictMode>
 );

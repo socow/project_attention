@@ -19,8 +19,11 @@ export default function Nav() {
 }
 
 const Navbar = styled.nav`
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 60px;
+  }
   margin: auto;
-  max-width: 1180px;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,6 +36,9 @@ const LogoImg = styled.img.attrs({
   src: `${logo}`,
 })`
   height: 90px;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 50px;
+  }
 `;
 const BtnWrap = styled.div`
   display: flex;
@@ -42,6 +48,9 @@ const BtnWrap = styled.div`
 `;
 
 const PostBtn = styled.button`
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 15px;
+  }
   font-size: 20px;
   font-weight: 500;
   outline: none;

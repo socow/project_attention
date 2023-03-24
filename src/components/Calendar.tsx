@@ -63,12 +63,21 @@ const PostWrappar = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+  h1 {
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 20px;
+    }
+  }
 `;
 
 const CalendarSection = styled.section`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .react-datepicker {
+    @media ${({ theme }) => theme.device.mobile} {
+      height: 365px;
+    }
+
     height: 400px;
     border: 0px;
     font-size: 18px;
@@ -111,6 +120,9 @@ const CalendarSection = styled.section`
   .react-datepicker__day-name,
   .react-datepicker__day,
   .react-datepicker__time-name {
+    @media ${({ theme }) => theme.device.mobile} {
+      margin: 10px;
+    }
     margin: 13px;
     color: green;
   }

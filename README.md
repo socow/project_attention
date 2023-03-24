@@ -66,6 +66,102 @@ firebase
  ┗ 📜index.tsx
 ```
 
+커스텀 훅을 사용하여 코드, 로직의 간결해지고 가독성이 좋아도록하였으며 필요없는 반복을 줄이고 재사용성을 높였습니다.
+
+추후 수정사항이 있을 시 커스텀 훅에서만 수정하면 되기 때문에 유지보수에 용이하도록하였습니다.
+
+```ts
+export default function useInput() {
+  const [value, setValue] = useState<string>("");
+
+  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  }, []);
+
+  return { value, onChange };
+}
+```
+
+useCallback과 useMemo를 사용하여 최적화하였습니다.
+
+```ts
+export default function useMainFetch() {
+  const setData = useSetRecoilState<Type[]>(attentionState);
+  const setAllData = useSetRecoilState<Type[]>(attentionAllState);
+  const today = useRecoilValue(todaySelector);
+  const all = useRecoilValue(allDataSelector);
+
+  const getData = useCallback(
+    () => Reservation.get(setData, setAllData),
+    [setData, setAllData]
+  );
+
+  const todayDate = useMemo(() => today, [today]);
+
+  const allStory = useMemo(() => all, [all]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  return {
+    todayDate,
+    allStory,
+  };
+}
+```
+
+recoil로 전역적으로 상태를 관리하였습니다.
+
+```ts
+export const attentionState = atom<Type[]>({
+  key: "attentionState",
+  default: [],
+});
+
+export const todaySelector = selector({
+  key: "todaySelector",
+  get: ({ get }) => {
+    const data = get(attentionState);
+    return data[0];
+  },
+});
+
+export const attentionAllState = atom<Type[]>({
+  key: "attentionAllState",
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const allDataSelector = selector({
+  key: "allDataSelector",
+  get: ({ get }) => {
+    const check = get(attentionAllState);
+    return check;
+  },
+});
+export const checkSelector = selector({
+  key: "checkSelector",
+  get: ({ get }) => {
+    const check = get(attentionAllState);
+    return check;
+  },
+});
+
+export const listState = atom<CommentType[]>({
+  key: "listState",
+  default: [],
+});
+
+export const ListSelector = selector({
+  key: "ListSelector",
+  get: ({ get }) => {
+    const data = get(listState);
+    return data;
+  },
+});
+```
+
 firbase에 쿼리문을 사용하여 날짜에 맞는 예약데이터 가져왔습니다.
 
 ```ts
@@ -128,7 +224,7 @@ const reservationCheck = (date: Date) => {
 
 댓글을 입력할때 랜덤으로 아이디를 생성하는 함수를 만들어 익명성을 보장하였습니다.
 
-firbase에 쿼리문을 사용하여 오늘날짜에 맞는 댓글과 댓글이 최신순으로 정렬하도록 하였습니다.
+firbase에 쿼리문을 사용하여 오늘날짜에 맞는 댓글만 받아오고 댓글이 최신순으로 정렬하도록 하였습니다.
 
 ```ts
 const randomId = (length = 8) => {
@@ -170,22 +266,6 @@ export const comment = {
     }
   },
 };
-```
-
-커스텀 훅을 사용하여 코드, 로직의 간결해지고 가독성이 좋아도록하였으며 필요없는 반복을 줄이고 재사용성을 높였습니다.
-
-추후 수정사항이 있을 시 커스텀 훅에서만 수정하면 되기 때문에 유지보수에 용이하도록하였습니다.
-
-```ts
-export default function useInput() {
-  const [value, setValue] = useState<string>("");
-
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
-  }, []);
-
-  return { value, onChange };
-}
 ```
 
 이슈: 새로고침하였을때 저장되있던 데이터가 사라져 예약이 차있음에도 예약을 하는 버그를 발견 하였습니다.
